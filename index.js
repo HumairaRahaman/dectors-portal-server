@@ -1,11 +1,13 @@
-const express = require('express')
-const cors = require('cors');
-require('dotenv').config();
-const app = express()
+const express = require("express");
+const cors = require("cors");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const { MongoClient, ServerApiVersion, Admin } = require("mongodb");
+const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wpekb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
@@ -179,5 +181,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
